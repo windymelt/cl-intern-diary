@@ -6,14 +6,19 @@ exec ros -Q -- $0 "$@"
 (progn ;;init forms
   (ros:ensure-asdf)
   (push *default-pathname-defaults* asdf:*central-registry*)
-  #+quicklisp (ql:quickload '(cl-intern-diary) :silent t)
+  #+quicklisp (ql:quickload '(cl-intern-diary alexandria) :silent t)
   )
 
 (defpackage :ros.script.diary.3708681786
-  (:use :cl :cl-intern-diary))
+  (:use :cl :cl-intern-diary :alexandria))
 (in-package :ros.script.diary.3708681786)
 
 (defun main (&rest argv)
   (declare (ignorable argv))
-  (hello))
+  ; alexandria switch
+  (switch ((car argv) :test #'equal)
+    ("add" (print "added"))
+    ("list" (print "listeed"))
+    ("delete" (print "listed"))
+    (otherwise (progn (print "error!") (format t "~a" (car argv))))))
 ;;; vim: set ft=lisp lisp:

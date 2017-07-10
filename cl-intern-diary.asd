@@ -11,7 +11,7 @@
   :version "0.1"
   :author ""
   :license ""
-  :depends-on ()
+  :depends-on (:cl-dbi)
   :components ((:module "src"
                 :components
                 ((:file "cl-intern-diary"))))

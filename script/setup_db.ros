@@ -1,0 +1,24 @@
+#!/bin/sh
+#|-*- mode:lisp -*-|#
+#| <Put a one-line description here>
+exec ros -Q -- $0 "$@"
+|#
+(progn ;;init forms
+  (ros:ensure-asdf)
+  (push *default-pathname-defaults* asdf:*central-registry*)
+  #+quicklisp (ql:quickload '(cl-dbi) :silent t)
+  )
+
+(defpackage :ros.script.setup_db.3708686312
+  (:use :cl :cl-dbi))
+(in-package :ros.script.setup_db.3708686312)
+
+(defun main (&rest argv)
+  (declare (ignorable argv))
+  (let* ((conn (dbi:connect :mysql
+                            :database-name "cl-intern-diary"
+                            :username "root"))
+         (query (dbi:prepare conn ""))
+         (result (dbi:execute query)))
+    (print "ok.")))
+;;; vim: set ft=lisp lisp:
