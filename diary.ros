@@ -18,7 +18,11 @@ exec ros -Q -- $0 "$@"
   ; alexandria switch
   (switch ((car argv) :test #'equal)
     ("add" (print "added"))
-    ("list" (print "listeed"))
+    ("list" (progn
+              (cl-intern-diary.context:with-context
+                  (let* ((query (dbi:prepare *db-connection* "SELECT * FROM diary"))
+                        (result (dbi:execute query)))
+                    (print result)))))
     ("delete" (print "listed"))
     (otherwise (progn (print "error!") (format t "~a" (car argv))))))
 ;;; vim: set ft=lisp lisp:

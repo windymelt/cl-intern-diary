@@ -1,4 +1,4 @@
-#S(cl-intern-diary-config
+#S(config:cl-intern-diary-config
 :db-type :mysql
 :db-name "cl-intern-diary"
 :db-host "127.0.0.1"

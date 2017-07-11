@@ -14,7 +14,9 @@
   :depends-on (:cl-dbi)
   :components ((:module "src"
                 :components
-                ((:file "cl-intern-diary"))))
+                ((:file "cl-intern-diary" :depends-on ())
+                 (:file "context" :depends-on ("config"))
+                 (:file "config"))))
   :description ""
   :long-description
   #.(with-open-file (stream (merge-pathnames
