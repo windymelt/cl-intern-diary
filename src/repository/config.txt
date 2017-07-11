@@ -1,0 +1,6 @@
+#S(cl-intern-diary-config
+:db-type :mysql
+:db-name "cl-intern-diary"
+:db-host "127.0.0.1"
+:db-username "nobody"
+:db-password "nobody")
